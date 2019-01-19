@@ -1,14 +1,21 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
+from jobs.forms import JobForm
+from jobs.models import Job
 from .forms import LoginForm
 
 
 def index(request):
     context = dict()
 
-    context['login_form'] = LoginForm()
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
+
     context['user'] = request.user
+    context['jobs_list'] = Job.objects.all()
 
     return render(
         request,
@@ -27,7 +34,7 @@ def login_view(request):
             user = authenticate(request, email=cd['email'], password=cd['password'])
             if user is not None:
                 login(request, user)
-                return redirect('index')
+                return redirect(reverse('index'))
         login_form.fields['email'].widget.attrs['class'] = 'form-control is-invalid'
 
     return render(
@@ -37,4 +44,25 @@ def login_view(request):
             "login_form": login_form,
             "errors": errors,
         }
+    )
+
+
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('index'))
+
+
+@login_required
+def create_job(request):
+    job_form = JobForm()
+    job_form.fields['worker'].initial = request.user
+    if request.method == 'POST':
+        job_form = JobForm(request.POST)
+        if job_form.is_valid():
+            job_form.save()
+            return redirect(reverse('index'))
+    return render(
+        request,
+        'core/create_job.html',
+        {'job_form': job_form, 'user': request.user}
     )

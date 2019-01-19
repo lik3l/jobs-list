@@ -20,4 +20,6 @@ from core import views as core_views
 urlpatterns = [
     path('', core_views.index, name='index'),
     path('login/', core_views.login_view, name='login'),
+    path('logout/', core_views.logout_view, name='logout'),
+    path('add-job/', core_views.create_job, name='add_job')
 ]
