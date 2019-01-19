@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Apps
     'core.apps.CoreConfig',
+    'jobs.apps.JobsConfig',
 ]
 
 MIDDLEWARE = [
