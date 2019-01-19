@@ -1,1 +1,15 @@
 {% extends 'base.html' %}
+
+{% block title %} Welcome to Job list {% endblock %}
+
+{% block content %}
+    {% if not user.is_authenticated%}
+        <form action="/login/" method="post">
+            {% csrf_token %}
+            {{ login_form }}
+            <input type="submit" value="Login">
+        </form>
+    {% else %}
+        {{ user.email }}
+    {% endif %}
+{% endblock %}

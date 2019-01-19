@@ -5,9 +5,13 @@ from django.contrib.auth.models import AbstractUser
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, *args, **kwargs):
-        user = self.model(**kwargs)
-        user.save()
+    def create_user(self, email, password, *args, **kwargs):
+        user = self.model(
+            email=self.normalize_email(email),
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
         return user
 
     def create_superuser(self, email, password):
@@ -16,7 +20,7 @@ class UserManager(BaseUserManager):
         birth and password.
         """
         user = self.create_user(
-            email,
+            email=email,
             password=password,
         )
         user.is_superuser = True

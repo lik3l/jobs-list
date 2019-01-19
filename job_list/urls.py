@@ -19,4 +19,5 @@ from core import views as core_views
 
 urlpatterns = [
     path('', core_views.index, name='index'),
+    path('login/', core_views.login_view, name='login'),
 ]
