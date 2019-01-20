@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="accordion" id="companyAccordion">
+            {% for company in companies %}
+                <div class="card">
+                    <div class="card-header" id="heading-{{ company.pk }}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-{{ company.pk }}"
+                                    aria-expanded="false" aria-controls="collapse-{{ company.pk }}">
+                                {{ company.name }}
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapse-{{ company.pk }}" class="collapse" aria-labelledby="heading-{{ company.pk }}"
+                         data-parent="#companyAccordion">
+                        <div class="card-body">
+                            Content
+                            <a href="/" class="btn btn-primary">Manage</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
