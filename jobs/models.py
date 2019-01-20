@@ -9,6 +9,10 @@ class Company(models.Model):
     address = models.CharField(max_length=255, default='', blank=True)
     email = models.EmailField(max_length=255, default='', blank=True)
 
+    def calculate_price(self, mat_id, rate, size):
+        price = self.prices.filter(material__pk=mat_id).first()
+        return price.price * size * rate if price else 0
+
     def __str__(self):
         return self.name
 

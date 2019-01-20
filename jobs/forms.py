@@ -10,10 +10,11 @@ User = get_user_model()
 
 class JobForm(forms.ModelForm):
     worker = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput())
-    material = forms.ModelChoiceField(queryset=Material.objects.all(),
-                                      widget=forms.Select(attrs={'class': 'form-control'}))
+
     client = forms.ModelChoiceField(queryset=Company.objects.all(),
                                     widget=forms.Select(attrs={'class': 'form-control'}))
+    material = forms.ModelChoiceField(queryset=Material.objects.all(),
+                                      widget=forms.Select(attrs={'class': 'form-control'}))
     ends = forms.DateField(widget=forms.DateInput(
         attrs={'class': 'form-control', 'type': 'date'}
     ), initial=datetime.now().strftime('%Y-%m-%d'))

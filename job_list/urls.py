@@ -27,6 +27,7 @@ urlpatterns = [
     path('logout/', core_views.logout_view, name='logout'),
     path('add-job/', core_views.create_job, name='add_job'),
     path('add-price/<int:pk>', job_views.add_company_price, name='add_price'),
+    path('calculate-price/', job_views.calculate_price, name='calculate_price'),
     path('companies/', job_views.company_list, name='company_list'),
     path('companies/<int:pk>/', job_views.company_detail, name='company_detail'),
     path('companies/add', job_views.add_company, name='company_add'),

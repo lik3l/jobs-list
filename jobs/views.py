@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import ProtectedError
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -65,6 +66,21 @@ def company_detail(request, pk=None):
         'jobs/company_detail.html',
         context
     )
+
+
+@login_required
+def calculate_price(request):
+    required = ('client_id', 'material_id', 'width', 'height', 'rate')
+    data = dict(price=0)
+    ga = request.GET.dict()
+    if all(k in ga for k in required):
+        try:
+            client = Company.objects.get(pk=ga['client_id'])
+            data['price'] = client.calculate_price(ga['material_id'], float(ga['rate']),
+                                                   int(ga['width']) * int(ga['height']) * 0.01)
+        except (Company.DoesNotExist, TypeError):
+            pass
+    return JsonResponse(data)
 
 
 def add_company_price(request, pk=None):
