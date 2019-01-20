@@ -22,6 +22,22 @@ def company_list(request):
 
 
 @login_required
+def add_company(request):
+    company_form = CompanyForm()
+    if request.method == 'POST':
+        company_form = CompanyForm(request.POST)
+        if company_form.is_valid():
+            company_form.save()
+            return redirect(reverse('company_list'))
+
+    return render(
+        request,
+        'jobs/add_company.html',
+        dict(user=request.user, company_form=company_form)
+    )
+
+
+@login_required
 def company_detail(request, pk=None):
     context = dict()
 

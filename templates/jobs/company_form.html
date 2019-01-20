@@ -1,0 +1,26 @@
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ company_form.name.id_for_label }}">{{ company_form.name.label }}</label>
+        {{ company_form.name }}
+    </div>
+    <div class="form-group">
+        <label for="{{ company_form.email.id_for_label }}">{{ company_form.email.label }}</label>
+        {{ company_form.email }}
+    </div>
+    <div class="form-group">
+        <label for="{{ company_form.phone.id_for_label }}">{{ company_form.phone.label }}</label>
+        {{ company_form.phone }}
+    </div>
+    <div class="form-group">
+        <label for="{{ company_form.address.id_for_label }}">{{ company_form.address.label }}</label>
+        {{ company_form.address }}
+    </div>
+    <div class="form-group">
+        <label for="{{ company_form.contact_name.id_for_label }}">{{ company_form.contact_name.label }}</label>
+        {{ company_form.contact_name }}
+    </div>
+    <button class="btn btn-primary" type="submit">
+        Change
+    </button>
+</form>

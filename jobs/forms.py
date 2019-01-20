@@ -15,6 +15,11 @@ class JobForm(forms.ModelForm):
 
 
 class CompanyForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    contact_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
 
     class Meta:
         model = Company

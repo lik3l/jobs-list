@@ -25,4 +25,5 @@ urlpatterns = [
     path('add-job/', core_views.create_job, name='add_job'),
     path('companies/', job_views.company_list, name='company_list'),
     path('companies/<int:pk>', job_views.company_detail, name='company_detail'),
+    path('companies/add', job_views.add_company, name='company_add'),
 ]
