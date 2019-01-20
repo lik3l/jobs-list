@@ -1,5 +1,6 @@
 media/
 node_modules/
+staticfiles/
 venv/
 .idea
 *.pyc
