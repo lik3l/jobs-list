@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="content">
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <form action="." method="post">
-                    {% csrf_token %}
-                    {{ job_form }}
-                    <button class="btn btn-primary" type="submit">Add</button>
-                </form>
-            </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ job_form }}
+                <button class="btn btn-primary" type="submit">Add job</button>
+            </form>
         </div>
     </div>
 {% endblock %}

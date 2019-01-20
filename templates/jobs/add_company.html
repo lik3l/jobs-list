@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
+{% block heading %}
+Add company
+{% endblock %}
+
 {% block content %}
-    <div class="container">
-        <h1>Add company</h1>
-        <div class="card">
-            <div class="card-body">
-                {% include 'jobs/company_form.html' %}
-            </div>
+
+    <div class="card">
+        <div class="card-body">
+            {% include 'jobs/company_form.html' %}
         </div>
     </div>
 
