@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block heading %}
-Clients
+    Clients
 {% endblock %}
 
 {% block content %}
@@ -18,27 +18,36 @@ Clients
                         </button>
                         <span>
                             <a class="btn btn-link text-danger" href="{% url 'company_delete' company.pk %}">Delete</a>
-                            <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'company_detail' company.pk %}">Edit</a>
+                            <a class="btn btn-primary" style="margin-right: 10px"
+                               href="{% url 'company_detail' company.pk %}">Edit</a>
                         </span>
-
                     </h2>
                 </div>
 
                 <div id="collapse-{{ company.pk }}" class="collapse" aria-labelledby="heading-{{ company.pk }}"
                      data-parent="#companyAccordion">
                     <div class="card-body">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ company.name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ company.email }}</h6>
-                            {% if company.contact_name %}
-                                <p class="card-text">Contact: {{ company.contact_name }}</p>
-                            {% endif %}
-                            {% if company.phone %}
-                                <p class="card-text">Phone: {{ company.phone }}</p>
-                            {% endif %}
-                            {% if company.address %}
-                                <p class="card-text">Address: {{ company.address }}</p>
-                            {% endif %}
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title">{{ company.name }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ company.email }}</h6>
+                                {% if company.contact_name %}
+                                    <p class="card-text">Contact: {{ company.contact_name }}</p>
+                                {% endif %}
+                                {% if company.phone %}
+                                    <p class="card-text">Phone: {{ company.phone }}</p>
+                                {% endif %}
+                                {% if company.address %}
+                                    <p class="card-text">Address: {{ company.address }}</p>
+                                {% endif %}
+
+                            </div>
+                            <div class="col">
+                                {% for price in company.prices.all %}
+                                    <p class="card-text">{{ price.material }} - {{ price.price }}</p>
+                                {% endfor %}
+                                <a href="{% url 'add_price' company.id %}" class="btn btn-success">Add price</a>
+                            </div>
                         </div>
                     </div>
                 </div>

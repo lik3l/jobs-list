@@ -3,7 +3,7 @@ from django.db.models import ProtectedError
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .forms import CompanyForm, MaterialForm
+from .forms import CompanyForm, MaterialForm, CompanyPriceForm
 from .models import Company, Material
 
 
@@ -63,6 +63,34 @@ def company_detail(request, pk=None):
     return render(
         request,
         'jobs/company_detail.html',
+        context
+    )
+
+
+def add_company_price(request, pk=None):
+    context = dict()
+    try:
+        company = Company.objects.get(pk=pk)
+    except Company.DoesNotExist:
+        return redirect(reverse('company_list'))
+    price_form = CompanyPriceForm()
+    if request.method == 'POST':
+        price_form = CompanyPriceForm(request.POST)
+        if price_form.is_valid():
+            price_form.save()
+            return redirect(reverse('company_list'))
+    price_form.fields['company'].initial = company
+    excluded_prices = Material.objects.values('pk').filter(companyprice__company=company)
+    if excluded_prices:
+        price_form.fields['material'].queryset = Material.objects.all().exclude(pk__in=excluded_prices)
+    else:
+        Material.objects.all()
+
+    context['price_form'] = price_form
+
+    return render(
+        request,
+        'jobs/add_price.html',
         context
     )
 

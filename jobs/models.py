@@ -22,7 +22,7 @@ class Material(models.Model):
 
 
 class CompanyPrice(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name='prices', on_delete=models.CASCADE)
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
     price = models.FloatField()
 

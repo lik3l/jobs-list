@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add price
+{% endblock %}
+
+{% block heading %}
+Add price
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ price_form }}
+                <button style="margin-top: 20px" class="btn btn-primary btn-block" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
