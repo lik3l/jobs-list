@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block heading %}
+Materials
+{% endblock %}
+
+{% block content %}
+
+    <div class="accordion" id="materialAccordion" style="margin-bottom: 20px">
+        {% for material in materials %}
+            <div class="card">
+                <div class="card-header" id="heading-{{ material.pk }}">
+                    <h2 class="row" style="justify-content: space-between !important; margin-bottom: 0;">
+                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapse-{{ material.pk }}"
+                                aria-expanded="false" aria-controls="collapse-{{ material.pk }}">
+                            {{ material.name }}
+                        </button>
+                        <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'material_detail' material.pk %}">Edit</a>
+                    </h2>
+                </div>
+
+                <div id="collapse-{{ material.pk }}" class="collapse" aria-labelledby="heading-{{ material.pk }}"
+                     data-parent="#materialAccordion">
+                    <div class="card-body">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ material.name }}</h5>
+                            <p class="card-subtitle">Default price: {{ material.default_price }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'material_add' %}" class="btn btn-primary btn-block">Add material</a>
+
+{% endblock %}

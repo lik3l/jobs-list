@@ -15,6 +15,7 @@ class Company(models.Model):
 
 class Material(models.Model):
     name = models.CharField(max_length=100)
+    default_price = models.FloatField(default=10)
 
     def __str__(self):
         return self.name

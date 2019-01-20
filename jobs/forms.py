@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
-from .models import Job, Company
+from .models import Job, Company, Material
 
 User = get_user_model()
 
@@ -23,4 +23,13 @@ class CompanyForm(forms.ModelForm):
 
     class Meta:
         model = Company
+        fields = '__all__'
+
+
+class MaterialForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    default_price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = Material
         fields = '__all__'
