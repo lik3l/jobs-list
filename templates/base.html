@@ -34,9 +34,9 @@
                     </ul>
                     {% if user.is_authenticated %}
                         <span class="navbar-text" style="padding-right: 20px">Hello, {{ user.email }}</span>
-                        <a href="/logout/" class="navbar-link">Logout</a>
+                        <a href="{% url 'logout' %}" class="navbar-link">Logout</a>
                     {% else %}
-                        <a href="/login/" class="navbar-link">Login</a>
+                        <a href="{% url 'login' %}" class="navbar-link">Login</a>
                     {% endif %}
                 </div>
             </nav>
