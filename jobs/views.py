@@ -77,7 +77,7 @@ def calculate_price(request):
         try:
             client = Company.objects.get(pk=ga['client_id'])
             data['price'] = client.calculate_price(ga['material_id'], float(ga['rate']),
-                                                   int(ga['width']) * int(ga['height']) * 0.01)
+                                                   int(ga['width']) * int(ga['height']) * 0.01 * 0.01)
             data['price'] = '{:.2f}'.format(data['price'])
         except (Company.DoesNotExist, TypeError, ValueError):
             pass
