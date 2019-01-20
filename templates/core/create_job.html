@@ -13,7 +13,7 @@ Add new job
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <form action="." method="post">
+                    <form action="." method="post" id="job-form">
                         {% csrf_token %}
                         {{ job_form }}
                         <a style="margin-top: 20px" class="btn btn-outline-danger btn-block" href="{% url 'index' %}">Cancel</a>
@@ -23,4 +23,39 @@ Add new job
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        jQuery(function ($) {
+                let $client = $('#id_client'),
+                $width = $('#id_width'),
+                $height = $('#id_height'),
+                $rate = $('#id_rate'),
+                $company = $('#id_material'),
+                $price = $('#id_price');
+
+            console.log($client.val());
+
+            $('#job-form').on('change', function (e) {
+                let uri_params = $.param({
+                    client_id: $client.val(),
+                    width: $width.val(),
+                    height: $height.val(),
+                    rate: $rate.val(),
+                    material_id: $company.val()
+                });
+
+                $.ajax({
+                    url: '/calculate-price/?' + uri_params
+                })
+                    .done(function (data, e) {
+                        if (data.price) {
+                            $price.val(data.price);
+                        }
+                    });
+
+            });
+        });
+    </script>
 {% endblock %}
