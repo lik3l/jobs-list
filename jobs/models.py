@@ -21,6 +21,15 @@ class Material(models.Model):
         return self.name
 
 
+class CompanyPrice(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    material = models.ForeignKey(Material, on_delete=models.CASCADE)
+    price = models.FloatField()
+
+    class Meta:
+        unique_together = ('company', 'material')
+
+
 class Job(models.Model):
     TODO = 0
     IN_WORK = 1

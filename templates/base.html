@@ -17,6 +17,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/">DEMO App</a>
 
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -25,16 +26,32 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">Job list <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'company_list' %}">Clients</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'material_list' %}">Materials</a>
-                        </li>
+                        {% if user.is_authenticated %}
+
+                            <li
+                                    class="nav-item{% if view_name == 'index' %} active{% endif %}"
+                            >
+                                <a class="nav-link" href="/">
+                                    Job list
+                                </a>
+                            </li>
+                            <li
+                                    class="nav-item{% if view_name == 'company_list' %} active{% endif %}"
+                            >
+                                <a class="nav-link" href="{% url 'company_list' %}">
+                                    Clients
+                                </a>
+                            </li>
+                            <li
+                                    class="nav-item{% if view_name == 'material_list' %} active{% endif %}"
+                            >
+                                <a class="nav-link" href="{% url 'material_list' %}">
+                                    Materials
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
+
                     {% if user.is_authenticated %}
 
                         <span class="navbar-text" style="padding-right: 20px">Hello, {{ user.email }}</span>

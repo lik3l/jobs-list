@@ -3,7 +3,7 @@ from datetime import datetime
 from django import forms
 from django.contrib.auth import get_user_model
 
-from .models import Job, Company, Material
+from .models import Job, Company, Material, CompanyPrice
 
 User = get_user_model()
 
@@ -49,4 +49,20 @@ class MaterialForm(forms.ModelForm):
 
     class Meta:
         model = Material
+        fields = '__all__'
+
+
+class CompanyPriceForm(forms.ModelForm):
+    company = forms.ModelChoiceField(
+        queryset=Company.objects.all(),
+        widget=forms.HiddenInput()
+    )
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = CompanyPrice
         fields = '__all__'

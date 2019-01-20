@@ -14,6 +14,7 @@ def company_list(request):
 
     context['user'] = request.user
     context['companies'] = companies
+    context['view_name'] = request.resolver_match.url_name
 
     return render(
         request,
@@ -83,6 +84,7 @@ def material_list(request):
 
     context['user'] = request.user
     context['materials'] = materials
+    context['view_name'] = request.resolver_match.url_name
 
     return render(
         request,

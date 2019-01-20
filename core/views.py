@@ -16,6 +16,7 @@ def index(request):
 
     context['user'] = request.user
     context['jobs_list'] = Job.objects.all()
+    context['view_name'] = request.resolver_match.url_name
 
     return render(
         request,
