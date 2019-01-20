@@ -23,5 +23,6 @@ urlpatterns = [
     path('login/', core_views.login_view, name='login'),
     path('logout/', core_views.logout_view, name='logout'),
     path('add-job/', core_views.create_job, name='add_job'),
-    path('companies/', job_views.company_list, name='company_list')
+    path('companies/', job_views.company_list, name='company_list'),
+    path('companies/<int:pk>', job_views.company_detail, name='company_detail'),
 ]

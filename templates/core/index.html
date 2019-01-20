@@ -21,7 +21,7 @@
                     {% for job in jobs_list %}
                         <tr>
                             <td>{{ job.pk }}</td>
-                            <td>{{ job.status }}</td>
+                            <td>{{ job.get_status_display }}</td>
                             <td>{{ job.created|date:"d-m-y" }}</td>
                             <td>{{ job.ends|date:"d-m-y" }}</td>
                             <td>{{ job.name }}</td>

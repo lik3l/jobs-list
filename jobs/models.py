@@ -4,6 +4,10 @@ from django.utils import timezone
 
 class Company(models.Model):
     name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20, default='', blank=True)
+    contact_name = models.CharField(max_length=100, default='', blank=True)
+    address = models.CharField(max_length=255, default='', blank=True)
+    email = models.EmailField(max_length=255, default='', blank=True)
 
     def __str__(self):
         return self.name

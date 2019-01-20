@@ -18,8 +18,20 @@
                     <div id="collapse-{{ company.pk }}" class="collapse" aria-labelledby="heading-{{ company.pk }}"
                          data-parent="#companyAccordion">
                         <div class="card-body">
-                            Content
-                            <a href="/" class="btn btn-primary">Manage</a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ company.name }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ company.email }}</h6>
+                                {% if company.contact_name %}
+                                    <p class="card-text">Contact: {{ company.contact_name }}</p>
+                                {% endif %}
+                                {% if company.phone %}
+                                    <p class="card-text">Phone: {{ company.phone }}</p>
+                                {% endif %}
+                                {% if company.address %}
+                                    <p class="card-text">Address: {{ company.address }}</p>
+                                {% endif %}
+                                <a class="btn btn-primary" href="{% url 'company_detail' company.pk %}">Edit</a>
+                            </div>
                         </div>
                     </div>
                 </div>
