@@ -16,7 +16,12 @@ Materials
                                 aria-expanded="false" aria-controls="collapse-{{ material.pk }}">
                             {{ material.name }}
                         </button>
-                        <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'material_detail' material.pk %}">Edit</a>
+                        <span>
+                            <a class="btn btn-link text-danger"
+                              href="{% url 'material_delete' material.pk %}">Delete</a>
+                            <a class="btn btn-primary" style="margin-right: 10px"
+                              href="{% url 'material_detail' material.pk %}">Edit</a>
+                        </span>
                     </h2>
                 </div>
 

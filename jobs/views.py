@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import ProtectedError
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -66,6 +67,16 @@ def company_detail(request, pk=None):
 
 
 @login_required
+def company_delete(request, pk=None):
+    try:
+        company = Company.objects.get(pk=pk)
+        company.delete()
+    except (Company.DoesNotExist, ProtectedError):
+        pass
+    return redirect(reverse('company_list'))
+
+
+@login_required
 def material_list(request):
     context = dict()
     materials = Material.objects.all()
@@ -122,3 +133,13 @@ def material_detail(request, pk=None):
         'jobs/material_detail.html',
         context
     )
+
+
+@login_required
+def material_delete(request, pk=None):
+    try:
+        material = Material.objects.get(pk=pk)
+        material.delete()
+    except (Company.DoesNotExist, ProtectedError):
+        pass
+    return redirect(reverse('material_list'))

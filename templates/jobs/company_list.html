@@ -16,7 +16,11 @@ Clients
                                 aria-expanded="false" aria-controls="collapse-{{ company.pk }}">
                             {{ company.name }}
                         </button>
-                        <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'company_detail' company.pk %}">Edit</a>
+                        <span>
+                            <a class="btn btn-link text-danger" href="{% url 'company_delete' company.pk %}">Delete</a>
+                            <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'company_detail' company.pk %}">Edit</a>
+                        </span>
+
                     </h2>
                 </div>
 

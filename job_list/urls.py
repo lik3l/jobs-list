@@ -24,9 +24,11 @@ urlpatterns = [
     path('logout/', core_views.logout_view, name='logout'),
     path('add-job/', core_views.create_job, name='add_job'),
     path('companies/', job_views.company_list, name='company_list'),
-    path('companies/<int:pk>', job_views.company_detail, name='company_detail'),
+    path('companies/<int:pk>/', job_views.company_detail, name='company_detail'),
     path('companies/add', job_views.add_company, name='company_add'),
+    path('companies/delete/<int:pk>/', job_views.company_delete, name='company_delete'),
     path('materials/', job_views.material_list, name='material_list'),
-    path('materials/<int:pk>', job_views.material_detail, name='material_detail'),
+    path('materials/<int:pk>/', job_views.material_detail, name='material_detail'),
     path('materials/add', job_views.add_material, name='material_add'),
+    path('materials/delete/<int:pk>/', job_views.material_delete, name='material_delete'),
 ]
