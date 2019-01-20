@@ -9,20 +9,93 @@ Add new job
 {% endblock %}
 
 {% block content %}
-    <div class="row justify-content-center">
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <form action="." method="post" id="job-form">
-                        {% csrf_token %}
-                        {{ job_form }}
-                        <a style="margin-top: 20px" class="btn btn-outline-danger btn-block" href="{% url 'index' %}">Cancel</a>
-                        <button style="margin-top: 20px" class="btn btn-primary btn-block" type="submit">Add job</button>
-                    </form>
-                </div>
+        <div class="card">
+            <div class="card-body">
+                <form action="." method="post" id="job-form">
+                    {% csrf_token %}
+                    {{ job_form.created }}
+                    {{ job_form.errors }}
+                    {{ job_form.worker }}
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="{{ job_form.ends.id_for_label }}">{{ job_form.ends.label }}</label>
+                                {{ job_form.ends }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="{{ job_form.name.id_for_label }}">{{ job_form.name.label }}</label>
+                                {{ job_form.name }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="{{ job_form.status.id_for_label }}">{{ job_form.status.label }}</label>
+                                {{ job_form.status }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ job_form.client.id_for_label }}">{{ job_form.client.label }}</label>
+                                {{ job_form.client }}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ job_form.material.id_for_label }}">{{ job_form.material.label }}</label>
+                                {{ job_form.material }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="{{ job_form.width.id_for_label }}">{{ job_form.width.label }}</label>
+                                {{ job_form.width }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="{{ job_form.height.id_for_label }}">{{ job_form.height.label }}</label>
+                                {{ job_form.height }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="{{ job_form.qty.id_for_label }}">{{ job_form.qty.label }}</label>
+                                {{ job_form.qty }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="{{ job_form.rate.id_for_label }}">{{ job_form.rate.label }}</label>
+                                {{ job_form.rate }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="{{ job_form.payment.id_for_label }}">{{ job_form.payment.label }}</label>
+                                {{ job_form.payment }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="{{ job_form.price.id_for_label }}">{{ job_form.price.label }}</label>
+                                {{ job_form.price }}
+                            </div>
+                        </div>
+                    </div>
+                    <a style="margin-top: 20px" class="btn btn-outline-danger btn-block" href="{% url 'index' %}">Cancel</a>
+                    <button style="margin-top: 20px" class="btn btn-primary btn-block" type="submit">Add job</button>
+                </form>
             </div>
         </div>
-    </div>
+
 {% endblock %}
 
 {% block scripts %}

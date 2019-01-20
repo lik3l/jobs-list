@@ -20,12 +20,17 @@ class JobForm(forms.ModelForm):
     ), initial=datetime.now().strftime('%Y-%m-%d'))
     status = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=Job.STATUSES)
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    width = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    height = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    rate = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    width = forms.IntegerField(widget=forms.NumberInput(
+        attrs={'class': 'form-control', "placeholder": "cm"}
+    ))
+    height = forms.IntegerField(widget=forms.NumberInput(
+        attrs={'class': 'form-control', "placeholder": "cm"}
+    ))
+    rate = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control'}), initial=28.1)
     payment = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    qty = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    qty = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}),
+                             initial=1)
 
     class Meta:
         model = Job
