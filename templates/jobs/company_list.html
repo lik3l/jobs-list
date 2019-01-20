@@ -10,12 +10,13 @@ Clients
         {% for company in companies %}
             <div class="card">
                 <div class="card-header" id="heading-{{ company.pk }}">
-                    <h2 class="mb-0">
+                    <h2 class="row" style="justify-content: space-between !important; margin-bottom: 0;">
                         <button class="btn btn-link" type="button" data-toggle="collapse"
                                 data-target="#collapse-{{ company.pk }}"
                                 aria-expanded="false" aria-controls="collapse-{{ company.pk }}">
                             {{ company.name }}
                         </button>
+                        <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'company_detail' company.pk %}">Edit</a>
                     </h2>
                 </div>
 
@@ -34,7 +35,6 @@ Clients
                             {% if company.address %}
                                 <p class="card-text">Address: {{ company.address }}</p>
                             {% endif %}
-                            <a class="btn btn-primary" href="{% url 'company_detail' company.pk %}">Edit</a>
                         </div>
                     </div>
                 </div>
