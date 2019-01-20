@@ -36,8 +36,10 @@
                         </li>
                     </ul>
                     {% if user.is_authenticated %}
+
                         <span class="navbar-text" style="padding-right: 20px">Hello, {{ user.email }}</span>
-                        <a href="{% url 'logout' %}" class="navbar-link">Logout</a>
+                        <a class="btn  btn-outline-success btn-sm" style="margin-right: 10px" href="{% url 'add_job' %}">+ Add new job</a>
+                        <a href="{% url 'logout' %}" class="btn btn-link btn-sm text-danger">Logout</a>
                     {% else %}
                         <a href="{% url 'login' %}" class="navbar-link">Login</a>
                     {% endif %}
@@ -51,6 +53,7 @@
         {% endblock %}
     </div>
 
+    <div class="footer" style="padding: 40px"></div>
 
     <script src="{% static 'node_modules/jquery/dist/jquery.slim.min.js' %}"></script>
     <script src="{% static 'node_modules/popper.js/dist/umd/popper.min.js' %}"></script>

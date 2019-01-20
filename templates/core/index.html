@@ -3,12 +3,12 @@
 {% block title %} Welcome to Job list {% endblock %}
 
 {% block heading %}
-    Job list
+Job list
 {% endblock %}
 
 {% block content %}
     {% if user.is_authenticated %}
-        <table class="table">
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th scope="col">id</th>
@@ -18,6 +18,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Worker</th>
                 <th scope="col">Price</th>
+                <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -30,6 +31,14 @@
                         <td>{{ job.name }}</td>
                         <td>{{ job.worker }}</td>
                         <td>{{ job.price }}</td>
+                        <td>
+                            {% if job.status == job.TODO %}
+                                <a href="{% url 'start_job' job.pk %}" class="btn btn-link text-primary">Start</a>
+                            {% endif %}
+                            {% if job.status != job.DONE %}
+                                <a href="{% url 'finish_job' job.pk %}" class="btn btn-success">Finish</a>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

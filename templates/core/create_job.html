@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
 
+{% block title %}
+Add new job
+{% endblock %}
+
+{% block heading %}
+Add new job
+{% endblock %}
+
 {% block content %}
     <div class="row justify-content-center">
         <div class="col-6">
-            <form action="." method="post">
-                {% csrf_token %}
-                {{ job_form }}
-                <button class="btn btn-primary" type="submit">Add job</button>
-            </form>
+            <div class="card">
+                <div class="card-body">
+                    <form action="." method="post">
+                        {% csrf_token %}
+                        {{ job_form }}
+                        <a style="margin-top: 20px" class="btn btn-outline-danger btn-block" href="{% url 'index' %}">Cancel</a>
+                        <button style="margin-top: 20px" class="btn btn-primary btn-block" type="submit">Add job</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

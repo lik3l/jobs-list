@@ -20,6 +20,9 @@ from jobs import views as job_views
 
 urlpatterns = [
     path('', core_views.index, name='index'),
+    path('finish/<int:pk>/', core_views.finish_job, name='finish_job'),
+    path('start/<int:pk>/', core_views.start_job, name='start_job'),
+    path('', core_views.index, name='index'),
     path('login/', core_views.login_view, name='login'),
     path('logout/', core_views.logout_view, name='logout'),
     path('add-job/', core_views.create_job, name='add_job'),

@@ -38,6 +38,9 @@ class Job(models.Model):
     material = models.ForeignKey(Material, on_delete=models.PROTECT)
     client = models.ForeignKey(Company, on_delete=models.PROTECT)
     worker = models.ForeignKey('core.User', on_delete=models.PROTECT)
+
+    width = models.IntegerField()
+    height = models.IntegerField()
     rate = models.FloatField()
     payment = models.FloatField(default=0)
     qty = models.IntegerField(default=1)
@@ -45,3 +48,6 @@ class Job(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['status', 'created']

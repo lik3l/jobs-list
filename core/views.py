@@ -66,3 +66,25 @@ def create_job(request):
         'core/create_job.html',
         {'job_form': job_form, 'user': request.user}
     )
+
+
+@login_required
+def finish_job(request, pk=None):
+    try:
+        job = Job.objects.get(pk=pk)
+        job.status = Job.DONE
+        job.save()
+    except Job.DoesNotExist:
+        pass
+    return redirect(reverse('index'))
+
+
+@login_required
+def start_job(request, pk=None):
+    try:
+        job = Job.objects.get(pk=pk)
+        job.status = Job.IN_WORK
+        job.save()
+    except Job.DoesNotExist:
+        pass
+    return redirect(reverse('index'))
